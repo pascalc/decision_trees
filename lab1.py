@@ -10,6 +10,7 @@ testdata = [m.monk1test,m.monk2test,m.monk3test]
 # Assignment 1
 def assignment1():
 	print "--- Assignment 1 ---"
+	print "Initial entropy of the datasets"
 	table = Texttable()
 	table.add_row(["Dataset","Entropy"])
 	for i in range(3):
@@ -20,6 +21,7 @@ def assignment1():
 # Assignment 2
 def assignment2():
 	print "--- Assignment 2 ---"
+	print "Selecting the root of the decision tree"
 	table = Texttable()
 	table.add_row(["Dataset", "a1", "a2", "a3", "a4", "a5", "a6"])
 	for i in range(3):
@@ -31,6 +33,7 @@ def assignment2():
 # Assignment 3
 def assignment3():
 	print "--- Assignment 3 ---"
+	print "Performance of the decision trees"
 	table = Texttable()
 	table.add_row(["Dataset", "Training", "Test"])
 	for i in range(3):
@@ -43,6 +46,7 @@ def assignment3():
 # Assignment 4
 def assignment4():
 	print "--- Assignment 4 ---"
+	print "Selecting the best fraction to divide training and validation sets for pruning"
 	def best_pruned(pruned,valid_set):
 		best = (None,0)
 		for tree in pruned:
