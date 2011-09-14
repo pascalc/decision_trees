@@ -56,7 +56,7 @@ def assignment4():
 		return best
 	
 	table = Texttable()
-	table.add_row(["Dataset", "0.3", "0.4", "0.5", "0.6", "0.7", "0.8"])
+	table.add_row(["Dataset", "0.3", "0.4", "0.5", "0.6", "0.7", "0.8", "Full Tree"])
 	for i in range(3):
 		row = ["Monk-" + str(i+1)]
 		for frac in [(x * 0.1) for x in range(3,9)]:
@@ -64,8 +64,9 @@ def assignment4():
 			base = d.buildTree(train_set,m.attributes)
 			pruned = d.allPruned(base)
 			best = best_pruned(pruned,valid_set)
-			true_error = d.check(best[0],testdata[i])
-			row += [true_error]
+			true_perf = d.check(best[0],testdata[i])
+			row += [true_perf]
+		row += [d.check(d.buildTree(monkdata[i],m.attributes),testdata[i])]
 		table.add_row(row)
 	print table.draw()
 	print					
