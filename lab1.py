@@ -11,7 +11,7 @@ testdata = [m.monk1test,m.monk2test,m.monk3test]
 def assignment1():
 	print "--- Assignment 1 ---"
 	print "Initial entropy of the datasets"
-	table = Texttable(max_width=0)
+	table = Texttable(max_width=100)
 	table.add_row(["Dataset","Entropy"])
 	for i in range(3):
 		table.add_row(["Monk-" + str(i+1), d.entropy(monkdata[i])])
@@ -22,7 +22,7 @@ def assignment1():
 def assignment2():
 	print "--- Assignment 2 ---"
 	print "Selecting the root of the decision tree"
-	table = Texttable(max_width=0)
+	table = Texttable(max_width=100)
 	table.add_row(["Dataset", "a1", "a2", "a3", "a4", "a5", "a6"])
 	for i in range(3):
 		gains = map(lambda att: d.averageGain(monkdata[i],att), m.attributes)
@@ -34,7 +34,7 @@ def assignment2():
 def assignment3():
 	print "--- Assignment 3 ---"
 	print "Performance of the decision trees"
-	table = Texttable(max_width=0)
+	table = Texttable(max_width=100)
 	table.add_row(["Dataset", "Training", "Test"])
 	for i in range(3):
 		tree = d.buildTree(monkdata[i],m.attributes)
@@ -55,7 +55,7 @@ def assignment4():
 				best = (tree, perf)
 		return best
 	
-	table = Texttable(max_width=0)
+	table = Texttable(max_width=100)
 	table.add_row(["Dataset", "0.3", "0.4", "0.5", "0.6", "0.7", "0.8", "Full Tree"])
 	for i in range(3):
 		row = ["Monk-" + str(i+1)]
