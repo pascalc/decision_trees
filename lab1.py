@@ -47,8 +47,11 @@ def assignment3():
 def assignment4():
 	print "--- Assignment 4 ---"
 	print "Selecting the best fraction to divide training and validation sets for pruning"
-	def best_pruned(pruned,valid_set):
-		best = (None,0)
+	
+	# Return the best tree, pruned or otherwise, for the given validation set 
+	def best_pruned(base,valid_set):
+		pruned = d.allPruned(base)
+		best = (base,d.check(base,valid_set))
 		for tree in pruned:
 			perf = d.check(tree,valid_set)
 			if perf > best[1]:
@@ -56,14 +59,13 @@ def assignment4():
 		return best
 	
 	table = Texttable(max_width=100)
-	table.add_row(["Dataset", "0.3", "0.4", "0.5", "0.6", "0.7", "0.8", "Full Tree"])
+	table.add_row(["Dataset", "0.3", "0.4", "0.5", "0.6", "0.7", "0.8", "Original"])
 	for i in range(3):
 		row = ["Monk-" + str(i+1)]
 		for frac in [(x * 0.1) for x in range(3,9)]:
 			train_set, valid_set = m.partition(monkdata[i], frac)
 			base = d.buildTree(train_set,m.attributes)
-			pruned = d.allPruned(base)
-			best = best_pruned(pruned,valid_set)
+			best = best_pruned(base,valid_set)
 			true_perf = d.check(best[0],testdata[i])
 			row += [true_perf]
 		row += [d.check(d.buildTree(monkdata[i],m.attributes),testdata[i])]
