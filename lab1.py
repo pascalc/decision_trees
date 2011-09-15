@@ -54,12 +54,12 @@ def assignment4():
 		best = (base,d.check(base,valid_set))
 		for tree in pruned:
 			perf = d.check(tree,valid_set)
-			if perf > best[1]:
+			if perf >= best[1]:
 				best = (tree, perf)
 		return best
 	
 	table = Texttable(max_width=100)
-	table.add_row(["Dataset", "0.3", "0.4", "0.5", "0.6", "0.7", "0.8", "Original"])
+	table.add_row(["Dataset", "0.3", "0.4", "0.5", "0.6", "0.7", "0.8", "Benchmark"])
 	for i in range(3):
 		row = ["Monk-" + str(i+1)]
 		for frac in [(x * 0.1) for x in range(3,9)]:
