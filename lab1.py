@@ -2,6 +2,7 @@
 
 import dtree as d
 import monkdata as m
+import drawtree as dt
 from texttable import Texttable
 
 monkdata = [m.monk1,m.monk2,m.monk3]
@@ -43,23 +44,23 @@ def assignment3():
 	print table.draw()
 	print
 	
+# Return the best tree, pruned or otherwise, for the given validation set 
+def best_pruned(base,valid_set):
+	pruned = d.allPruned(base)
+	best = (base,d.check(base,valid_set))
+	for tree in pruned:
+		perf = d.check(tree,valid_set)
+		if perf >= best[1]:
+			best = (tree, perf)
+	return best
+
 # Assignment 4
 def assignment4():
 	print "--- Assignment 4 ---"
 	print "Selecting the best fraction to divide training and validation sets for pruning"
 	
-	# Return the best tree, pruned or otherwise, for the given validation set 
-	def best_pruned(base,valid_set):
-		pruned = d.allPruned(base)
-		best = (base,d.check(base,valid_set))
-		for tree in pruned:
-			perf = d.check(tree,valid_set)
-			if perf > best[1]:
-				best = (tree, perf)
-		return best
-	
 	table = Texttable(max_width=100)
-	table.add_row(["Dataset", "0.3", "0.4", "0.5", "0.6", "0.7", "0.8", "Original"])
+	table.add_row(["Dataset", "0.3", "0.4", "0.5", "0.6", "0.7", "0.8", "Benchmark"])
 	for i in range(3):
 		row = ["Monk-" + str(i+1)]
 		for frac in [(x * 0.1) for x in range(3,9)]:
